@@ -1,0 +1,28 @@
+<!-- Button trigger modal -->
+<button id="yep" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade " data-bs-backdrop="static" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex h-100">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Validar Token</h5>
+        <button type="button" id="yep1" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <div class="mb-3">
+          <label for="" class="form-label">Digite seu OTP</label>
+          <input type="number" [(ngModel)]="otp" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="validar($event)" class="btn btn-primary">Validar</button>
+      </div>
+    </div>
+  </div>
+</div>

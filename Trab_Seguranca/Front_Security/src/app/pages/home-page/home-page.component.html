@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<app-modal (value)="getValueResponse()"></app-modal>
+
+
+<div class="home border border-danger d-flex justify-content-center align-items-center" *ngIf="valueFromModel != null">
+<h1 class="otp-value">OTP
+<span *ngIf="valueFromModel">
+Valido
+</span>
+<span *ngIf="!valueFromModel">
+  Invalido
+  </span>
+</h1>
+</div>
+
+
