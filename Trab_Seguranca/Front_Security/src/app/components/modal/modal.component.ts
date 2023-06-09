@@ -11,6 +11,8 @@ import { TokenService } from 'src/app/services/token.service';
 export class ModalComponent {
   @Output() value = new EventEmitter<boolean>();
   otp!: number;
+  try: number = 0;
+  valid?:boolean;
 
   constructor(private service: AuthServiceService,private tokenService: TokenService, private router: Router) {
 
@@ -25,20 +27,28 @@ export class ModalComponent {
       if(response.validated){
         this.tokenService.response = true;
         this.value.emit()
+        this.valid = true;
 
-        document.getElementById('yep1')?.click()
+        document.getElementById('closeModal')?.click()
 
       }else{
         this.tokenService.response = false;
-        this.value.emit()
 
-        document.getElementById('yep1')?.click()
-        this.service.LoggedIn = false;
-        setTimeout(() => {
+        this.valid = false;
+        console.log("ue",this.valid)
+        if(this.try >= 2){
+          document.getElementById('closeModal')?.click()
+          this.service.LoggedIn = false;
 
-          this.router.navigate(['/'])
-        }, 5000);
-      }
+          setTimeout(() => {
+this.service.logout().subscribe((res) => console.log(res))
+            this.router.navigate(['/'])
+          }, 1);
+        }else{
+          this.try = this.try + 1;
+        }
+        }
+
     },
     error: (error) => {
       console.log(error)

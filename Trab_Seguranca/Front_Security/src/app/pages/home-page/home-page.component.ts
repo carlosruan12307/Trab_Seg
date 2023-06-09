@@ -9,12 +9,12 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class HomePageComponent implements AfterViewInit{
 valueFromModel!: boolean;
-  constructor(private renderer: Renderer2, private tokenService: TokenService){
+  constructor( private tokenService: TokenService){
 
 
   }
   ngAfterViewInit(): void {
-   document.getElementById('yep')?.click()
+   document.getElementById('openModal')?.click()
   }
   getValueResponse(){
     console.log(this.tokenService.response)

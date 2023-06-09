@@ -12,6 +12,12 @@ export class AuthServiceService {
   apiURL: string = "http://localhost:8080"
   constructor(private http: HttpClient) { }
 
+  logout(): Observable<any> {
+    this.LoggedIn = false;
+    return this.http.get(this.apiURL + '/logout', {
+      withCredentials: true,
+    });
+  }
 
   login(user: FormGroup): Observable<any> {
     console.log(

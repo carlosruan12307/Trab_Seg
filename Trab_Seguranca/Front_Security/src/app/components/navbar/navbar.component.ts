@@ -15,6 +15,7 @@ constructor(private service: AuthServiceService, private router:Router){
 logout(){
 
   this.service.LoggedIn = false;
+  this.service.logout().subscribe((res) => console.log(res))
 this.router.navigate(['/'])
 }
 }

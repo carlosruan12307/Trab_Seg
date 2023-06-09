@@ -49,7 +49,7 @@ function generateOTP(secret, period = 30) {
 }
 router.post("/generate", (req, res) => {
     
-    res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.set('Access-Control-Allow-Origin', '*');
     console.log(res)
     const { secret } = req.body;
     if (!secret)
@@ -62,7 +62,7 @@ router.post("/generate", (req, res) => {
     res.json({ otp: otp, expiresIn: validUntil });
 });
 router.post("/validate", (req, res) => {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.set('Access-Control-Allow-Origin', '*');
     let { secret, otp } = req.body;
     if (!secret || !otp)
         return res.status(400).json();
