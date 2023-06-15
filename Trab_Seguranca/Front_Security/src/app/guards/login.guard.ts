@@ -1,8 +1,8 @@
-
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -13,7 +13,7 @@ import { AuthServiceService } from '../services/auth-service.service';
   providedIn: 'root',
 })
 export class LoginGuardGuard implements CanActivate {
-  constructor(private service: AuthServiceService) {}
+  constructor(private service: AuthServiceService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,6 +22,13 @@ export class LoginGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.service.LoggedIn;
+    const l = localStorage.getItem('logged');
+    const parse = l ? JSON.parse(l) : false;
+    if (parse) {
+      return true; // Permite o acesso à rota
+    } else {
+      this.router.navigate(['/']); // Redireciona para outra rota, se não estiver autenticado
+      return false; // Bloqueia o acesso à rota
+    }
   }
 }

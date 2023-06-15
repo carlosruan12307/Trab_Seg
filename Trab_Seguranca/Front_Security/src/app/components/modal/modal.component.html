@@ -18,6 +18,7 @@
 
         </div>
 <div *ngIf="valid === false" class="text-danger ms-1"> Token Invalido</div>
+<div *ngIf="errors[403]" class="text-danger ms-1"> Erro 403 - Acesso negado</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
